@@ -3,7 +3,6 @@
 """Tests for `python_template` package."""
 
 import pytest
-
 from python_template import python_template  # noqa: F401
 
 

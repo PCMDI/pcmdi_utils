@@ -5,9 +5,9 @@ Credits
 Development Lead
 ----------------
 
-* Tom Vo <tomv@example.com>
+* Jiwoo Lee <lee1043@llnl.gov>
 
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Tom Vo <vo13@llnl.gov>

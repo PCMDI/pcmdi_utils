@@ -38,10 +38,10 @@ setup(
     long_description=readme + "\n\n" + history,
     include_package_data=True,
     # TODO: Update keywords and name to your library name
-    keywords="python_template",
-    name="python_template",
+    keywords="pcmdi_utils",
+    name="pcmdi_utils",
     # TODO: Update include statement in packages to your library modules
-    packages=find_packages(include=["python_template", "python_template.*"]),
+    packages=find_packages(include=["pcmdi_utils", "pcmdi_utils.*"]),
     test_suite="tests",
     tests_require=test_requirements,
     # TODO: Update url to the library's GitHub URL

@@ -1,4 +1,4 @@
-Welcome to Python Template's documentation!
+Welcome to PCMDI UTILS documentation!
 ===============================================
 
 .. toctree::
