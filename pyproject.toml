@@ -1,0 +1,49 @@
+# This file is used for configuring QA tools including black, isort, and pytest.
+# pyproject.toml is the latest adopted standard for configuring tools.
+
+[tool.black]
+# Docs: https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.idea
+    | venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | docs
+    | config
+  )/
+)
+'''
+
+[tool.isort]
+# Docs: https://pycqa.github.io/isort/docs/configuration/options.html#example-pyprojecttoml_4
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 88
+
+[tool.pytest.ini_options]
+# Docs: https://docs.pytest.org/en/7.2.x/reference/customize.html#configuration
+junit_family = "xunit2"
+python_files = ["tests.py", "test_*.py"]
+
+[tool.mypy]
+# Docs: https://mypy.readthedocs.io/en/stable/config_file.html
+python_version = 3.10
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
