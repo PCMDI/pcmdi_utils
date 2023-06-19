@@ -49,21 +49,13 @@ Resources for developers
 
 Follow the steps below to get this repository tailored to your library.
 
-1. On this page, click "Use this template" and "Create a new repository"
-
-   .. image:: docs/_static/use-this-template.png
-
-2. Clone your new repository
+Clone the repository
 
    .. code-block:: console
 
-      git clone https://github.com/<USERNAME>/<REPO-NAME>
+      git clone git@github.com:PCMDI/pcmdi_utils.git
 
-3. Update ``setup.py`` to replace ``python_template`` references with your project name
-4. Rename ``/python_template``, ``python_template.py``, and ``test_python_template.py`` to
-   your project name
-
-2. Set up the Anaconda Development Environment
+1. Set up the Anaconda Development Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Follow the steps below to get the Anaconda development environment set up for your
