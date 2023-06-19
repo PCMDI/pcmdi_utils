@@ -44,18 +44,16 @@ Getting Started
 Resources for developers
 ------------------------
 
-1. Set up the Python Library
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Clone this repository
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Follow the steps below to get this repository tailored to your library.
-
-Clone the repository
+Follow the steps below to get this repository cloned to your local environment
 
    .. code-block:: console
 
       git clone git@github.com:PCMDI/pcmdi_utils.git
 
-1. Set up the Anaconda Development Environment
+2. Set up the Anaconda Development Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Follow the steps below to get the Anaconda development environment set up for your
