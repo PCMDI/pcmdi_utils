@@ -12,6 +12,9 @@ dependencies:
     # ==========================================
     - python=3.10.10
     - xcdat=0.5.0
+    - pip
+    - pip:
+      - global-land-mask
     # ==========================================
     # Quality Assurance - for linting and formatting
     # ==========================================
