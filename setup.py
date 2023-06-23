@@ -18,8 +18,8 @@ test_requirements = [
 
 setup(
     # TODO: Update author and author_email
-    author="Tom Vo",
-    author_email="tomv@example.com",
+    author="Jiwoo Lee",
+    author_email="lee1043@llnl.gov",
     python_requires=">=3.6",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
