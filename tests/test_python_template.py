@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-"""Tests for `python_template` package."""
+"""Tests for `pcmdi_utils` package."""
 
 import pytest
-from python_template import python_template  # noqa: F401
+
+from pcmdi_utils import pcmdi_utils  # noqa: F401
 
 
 @pytest.fixture
