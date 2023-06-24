@@ -1,7 +1,7 @@
 # Conda environment for local development
 # Usage: <mamba|conda> env create -f conda-env/dev.yml
 # TODO: 1. Replace template in `name` with your library name
-name: template-dev
+name: pcmdi_utils_dev
 channels:
     - conda-forge
     - defaults
@@ -39,4 +39,4 @@ dependencies:
     # ==========================================
     - pytest
 # TODO: 3. Replace template in `prefix` with your library name
-prefix: /opt/miniconda3/env/template-dev
+prefix: /opt/miniconda3/env/pcmdi_utils_dev
