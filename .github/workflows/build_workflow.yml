@@ -82,7 +82,7 @@ jobs:
                   miniforge-version: latest
                   use-mamba: true
                   mamba-version: "*"
-                  environment-file: conda-env/ci.yml
+                  environment-file: conda-env/dev.yml
                   channel-priority: strict
                   auto-update-conda: true
                   # IMPORTANT: This needs to be set for caching to work properly!
