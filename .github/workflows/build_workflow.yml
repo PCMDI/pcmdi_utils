@@ -77,7 +77,7 @@ jobs:
               name: Set up Conda Environment
               uses: conda-incubator/setup-miniconda@v2
               with:
-                  activate-environment: "ci"
+                  activate-environment: "pcmdi_metrics_dev"
                   miniforge-variant: Mambaforge
                   miniforge-version: latest
                   use-mamba: true
