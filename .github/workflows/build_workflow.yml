@@ -113,7 +113,7 @@ jobs:
             - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               name: Update environment
               run:
-                mamba env update -n pcmdi_metrics_dev -f conda-env/dev.yml
+                mamba env update -n pcmdi_utils_dev -f conda-env/dev.yml
               
 
             - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
