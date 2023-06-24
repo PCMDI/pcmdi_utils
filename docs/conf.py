@@ -31,7 +31,29 @@ import pcmdi_utils
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode', 'sphinx_rtd_theme']
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "sphinx_autosummary_accessors",
+    "sphinx_copybutton",
+    "nbsphinx",
+]
+
+# autosummary and autodoc configurations
+autosummary_generate = True
+
+# Napoleon configurations
+napoleon_google_docstring = False
+napoleon_numpy_docstring = True
+napoleon_use_param = False
+napoleon_use_rtype = False
+napoleon_preprocess_types = True
+
+# sphinx-copybutton configurations
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -47,8 +69,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'PCMDI Utils'
-copyright = "2023, Tom Vo"
-author = "Tom vo"
+copyright = "2023, PCMDI"
+author = "PCMDI"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -83,7 +105,26 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinx_book_theme'
+
+# Theme options are theme-specific and customize the look and feel of a
+# theme further.  For a list of options available for each theme, see the
+# documentation.
+#
+# sphinx_book_theme configurations
+# https://sphinx-book-theme.readthedocs.io/en/latest/configure.html
+html_logo = "_static/xcdat-logo.png"
+html_title = "xCDAT Documentation"
+html_theme_options = {
+    "repository_url": "https://github.com/xCDAT/xcdat",
+    "repository_branch": "master",
+    "path_to_docs": "docs",
+    "use_edit_page_button": True,
+    "use_repository_button": True,
+    "use_issues_button": True,
+    "use_download_button": True,
+    "use_fullscreen_button": True,
+}
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
