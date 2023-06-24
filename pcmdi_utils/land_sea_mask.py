@@ -12,14 +12,21 @@ import xcdat as xc
 def generate_land_sea_mask(ds, tool="pcmdi", maskname="lsmask"):
     """Generates a best guess mask on any rectilinear grid
 
-    Args:
-        ds (xarray.Dataset): target grid
-        tool (str, optional): which method to use. Either "pcmdi" or "global_land_mask". Defaults to "pcmdi".
-        maskname (str, optional): Variable name for returning DataArray. Defaults to "lsmask".
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        target grid
+    tool : str, optional
+        Which method to use. Either "pcmdi" or "global_land_mask", by default "pcmdi"
+    maskname : str, optional
+        Variable name for returning DataArray, by default "lsmask"
 
-    Returns:
-        xarray.DataArray: landsea mask on target grid. 1: land, 0: water
+    Returns
+    -------
+    xarray.DataArray
+        landsea mask on target grid (1: land, 0: water).
     """
+
     if tool == "pcmdi":
         mask = generate_land_sea_mask__pcmdi(
             ds,
@@ -49,24 +56,38 @@ def generate_land_sea_mask__pcmdi(
 ):
     """Generates a best guess mask on any rectilinear grid, using the method described in `PCMDI's report #58`_
 
-    Args:
-        target_grid (xarray.Dataset): Either a xcdat/xarray Dataset with a grid, or a xcdat grid (rectilinear grid only)
-        source (_type_, optional): A xcdat/xarray Dataset that contains a DataArray of a fractional (0.0 to 1.0) land sea mask,
-        where 1 means all land. Defaults to None.
-        data_var (str, optional): name of DataArray for land sea fraction/mask variable in `source`. Defaults to "sftlf".
-        maskname (str, optional): Variable name for returning DataArray. Defaults to "lsmask".
-        regridTool (str, optional): which xcdat regridder tool to use. Defaults to "regrid2".
-        threshold_1 (float, optional): Criteria 1 for detecting cells with possible increment see report for detail difference threshold. Defaults to 0.2.
-        threshold_2 (float, optional): Criteria 2 for detecting cells with possible increment see report for detail water/land content threshold. Defaults to 0.3.
-        debug (bool, optional): _description_. Defaults to False.
+    Parameters
+    ----------
+    target_grid : xarray.Dataset
+        Either a xcdat/xarray Dataset with a grid, or a xcdat grid (rectilinear grid only)
+    source : xarray.Dataset, optional
+        A xcdat/xarray Dataset that contains a DataArray of a fractional (0.0 to 1.0) land sea mask,
+        where 1 means all land., by default None
+    data_var : str, optional
+        name of DataArray for land sea fraction/mask variable in `source`, by default "sftlf"
+    maskname : str, optional
+        Variable name for returning DataArray, by default "lsmask"
+    regridTool : str, optional
+        Which xcdat regridder tool to use, by default "regrid2"
+    threshold_1 : float, optional
+        Criteria for detecting cells with possible increment see report for detail difference threshold, by default 0.2
+    threshold_2 : float, optional
+        Criteria for detecting cells with possible increment see report for detail water/land content threshold, by default 0.3
+    debug : bool, optional
+        Switch to print more interim outputs to help debugging, by default False
 
-    Raises:
-        ValueError: _description_
+    Returns
+    -------
+    xarray.DataArray
+        landsea mask on target grid (1: land, 0: water).
 
-    Returns:
-        xarray.DataArray: landsea mask on target grid. 1: land, 0: water
+    Raises
+    ------
+    ValueError
+        _description_
 
-    References:
+    References
+    ----------
     .. _PCMDI's report #58: http://www-pcmdi.llnl.gov/publications/pdf/58.pdf
     """
 
@@ -423,16 +444,22 @@ def _map2four(mask, ds_regrid, data_var="sftlf", regridTool="regrid2", debug=Fal
 def generate_land_sea_mask__global_land_mask(ds, maskname="lsmask"):
     """Generate land sea mask for given grid using `global-land-mask`_ tool
 
-    Args:
-        ds (xarray.Dataset): Either a xcdat/xarray Dataset with a grid, or a xcdat grid (rectilinear grid only)
-        maskname (str, optional): Variable name for returning DataArray. Defaults to "lsmask".
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        Either a xcdat/xarray Dataset with a grid, or a xcdat grid (rectilinear grid only)
+    maskname : str, optional
+        Variable name for returning DataArray. Defaults to "lsmask".
 
-    Returns:
-        xarray.DataArray: landsea mask on target grid. 1: land, 0: water
+    Returns
+    -------
+    xarray.DataArray
+        landsea mask on target grid. 1: land, 0: water
 
     References:
     .. _global-land-mask: https://pypi.org/project/global-land-mask/
     """
+
     for key in list(ds.coords.keys()):
         if key in ["lat", "latitude"] or ds[key].attrs["axis"] == "Y":
             lat_key = key
