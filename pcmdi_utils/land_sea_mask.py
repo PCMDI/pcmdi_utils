@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 
 import global_land_mask as globe
@@ -6,10 +7,6 @@ import numpy as np
 import pkg_resources
 import xarray as xr
 import xcdat as xc
-
-egg_path = pkg_resources.resource_filename(
-    pkg_resources.Requirement.parse("pcmdi_utils"), "share/pcmdi_utils"
-)
 
 
 def generate_land_sea_mask(ds, tool="pcmdi", maskname="lsmask"):
@@ -74,7 +71,13 @@ def generate_land_sea_mask__pcmdi(
     """
 
     if source is None:
+        egg_path = pkg_resources.resource_filename(
+            pkg_resources.Requirement.parse("pcmdi_utils"), "share/pcmdi_utils"
+        )
         source_path = os.path.join(egg_path, "navy_land.nc")
+        if not os.path.isfile(source_path):
+            # pip install process places data files in different place, so checking here as well
+            source_path = os.path.join(sys.prefix, "share/pcmdi_utils", "navy_land.nc")
         ds = xc.open_dataset(source_path, decode_times=False).load()
     else:
         ds = source.copy()
