@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=python_template
+set SPHINXPROJ=pcmdi_utils
 
 if "%1" == "" goto help
 

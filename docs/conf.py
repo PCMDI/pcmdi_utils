@@ -44,6 +44,14 @@ extensions = [
 # autosummary and autodoc configurations
 autosummary_generate = True
 
+autodoc_member_order = "bysource"
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "private-members": True,
+}
+autodoc_typehints = "none"
+
 # Napoleon configurations
 napoleon_google_docstring = False
 napoleon_numpy_docstring = True
@@ -113,10 +121,10 @@ html_theme = 'sphinx_book_theme'
 #
 # sphinx_book_theme configurations
 # https://sphinx-book-theme.readthedocs.io/en/latest/configure.html
-html_logo = "_static/xcdat-logo.png"
-html_title = "xCDAT Documentation"
+html_logo = "_static/PCMDILogo_200x65px_72dpi.png"
+html_title = "PCMDI UTILS Documentation"
 html_theme_options = {
-    "repository_url": "https://github.com/xCDAT/xcdat",
+    "repository_url": "https://github.com/PCMDI/pcmdi_utils",
     "repository_branch": "master",
     "path_to_docs": "docs",
     "use_edit_page_button": True,

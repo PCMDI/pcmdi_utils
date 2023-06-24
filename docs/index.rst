@@ -5,6 +5,7 @@ Welcome to PCMDI UTILS documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   api
    authors
    history
 
