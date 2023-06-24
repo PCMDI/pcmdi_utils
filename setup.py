@@ -18,8 +18,8 @@ test_requirements = [
 
 setup(
     # TODO: Update author and author_email
-    author="Tom Vo",
-    author_email="tomv@example.com",
+    author="Jiwoo Lee",
+    author_email="lee1043@llnl.gov",
     python_requires=">=3.6",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
@@ -44,8 +44,9 @@ setup(
     packages=find_packages(include=["pcmdi_utils", "pcmdi_utils.*"]),
     test_suite="tests",
     tests_require=test_requirements,
+    data_files=[("share/pcmdi_utils", ["data/navy_land.nc"])],
     # TODO: Update url to the library's GitHub URL
-    url="https://github.com/tomvothecoder/python-template-repo",
+    url="https://github.com/PCMDI/pcmdi_utils",
     version="0.1.0",
     zip_safe=False,
 )

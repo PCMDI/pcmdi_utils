@@ -70,6 +70,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+generated/
+_static/.DS_Store
 
 # PyBuilder
 target/
@@ -127,3 +129,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# VScode
+.vscode/
+
+# Mac OS
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+*/*/*/.DS_Store

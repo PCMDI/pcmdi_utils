@@ -1,7 +1,7 @@
 # Conda environment for local development
 # Usage: <mamba|conda> env create -f conda-env/dev.yml
 # TODO: 1. Replace template in `name` with your library name
-name: template-dev
+name: pcmdi_utils_dev
 channels:
     - conda-forge
     - defaults
@@ -12,6 +12,9 @@ dependencies:
     # ==========================================
     - python=3.10.10
     - xcdat=0.5.0
+    - pip
+    - pip:
+      - global-land-mask
     # ==========================================
     # Quality Assurance - for linting and formatting
     # ==========================================
@@ -26,10 +29,14 @@ dependencies:
     # Documentation - for building docs
     # ==========================================
     - sphinx=5.3.0
+    - sphinx-autosummary-accessors=2022.4.0
     - sphinx-rtd-theme=1.2.0
+    - sphinx-book-theme=1.0.1
+    - sphinx-copybutton=0.5.1
+    - nbsphinx=0.9.1
     # ==========================================
     # Testing - for running unit tests
     # ==========================================
     - pytest
 # TODO: 3. Replace template in `prefix` with your library name
-prefix: /opt/miniconda3/env/template-dev
+prefix: /opt/miniconda3/env/pcmdi_utils_dev
