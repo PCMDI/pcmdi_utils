@@ -89,6 +89,27 @@ jobs:
                   use-only-tar-bz2: true
                   python-version: ${{ matrix.python-version }}
 
+            # Refresh the cache every 24 hours to avoid inconsistencies of package versions
+            # between the CI pipeline and local installations.
+            - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+              id: get-date
+              name: Get Date
+              run: echo "today=$(/bin/date -u '+%Y%m%d')" >> $GITHUB_OUTPUT
+              shell: bash
+
+            - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+              id: cache
+              name: Cache Conda env
+              uses: actions/cache@v3
+              with:
+                  path: ${{ env.CONDA }}/envs
+                  key:
+                      conda-${{ runner.os }}-${{ runner.arch }}-${{ matrix.python-version }}-${{
+                      steps.get-date.outputs.today }}-${{hashFiles('conda-env/dev.yml') }}-${{ env.CACHE_NUMBER}}
+              env:
+                  # Increase this value to reset cache if conda-env/ci.yml has not changed in the workflow
+                  CACHE_NUMBER: 0
+
             - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               name: Update environment
               run:
