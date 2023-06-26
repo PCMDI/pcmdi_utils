@@ -1,5 +1,7 @@
+PCMDI UTILS
+===========
+
 Welcome to PCMDI UTILS documentation!
-===============================================
 
 .. toctree::
    :maxdepth: 2
