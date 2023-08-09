@@ -44,6 +44,7 @@ def generate_land_sea_mask(ds, tool="pcmdi", maskname="lsmask"):
     return mask
 
 
+# flake8: noqa: C901
 def generate_land_sea_mask__pcmdi(
     target_grid,
     source=None,
@@ -125,16 +126,26 @@ def generate_land_sea_mask__pcmdi(
             )
 
         # Add missed information during the regrid process
-        # (this might be a bug... will report it to xcdat repo later)
-        ds_regrid[data_var].lat.attrs["axis"] = "Y"
-        ds_regrid[data_var].lon.attrs["axis"] = "X"
-        ds_regrid[data_var].lat.attrs["bounds"] = "lat_bnds"
-        ds_regrid[data_var].lon.attrs["bounds"] = "lon_bnds"
-        ds_regrid[data_var].lat.attrs["units"] = "degrees_north"
+        # (this might be a bug... will report it to xcdat team later)
+        if "axis" not in ds_regrid[data_var].lat.attrs.keys():
+            ds_regrid[data_var].lat.attrs["axis"] = "Y"
+        if "axis" not in ds_regrid[data_var].lon.attrs.keys():
+            ds_regrid[data_var].lon.attrs["axis"] = "X"
+        if "bounds" not in ds_regrid[data_var].lat.attrs.keys():
+            ds_regrid[data_var].lat.attrs["bounds"] = "lat_bnds"
+        if "bounds" not in ds_regrid[data_var].lon.attrs.keys():
+            ds_regrid[data_var].lon.attrs["bounds"] = "lon_bnds"
+        if "units" not in ds_regrid[data_var].lat.attrs:
+            ds_regrid[data_var].lat.attrs["units"] = "degrees_north"
 
     # re-generate lat lon bounds (original bounds are 2d arrays where 1d array for each is expected)
     ds_regrid = (
-        ds_regrid.drop_vars(["lat_bnds", "lon_bnds"])
+        ds_regrid.drop_vars(
+            [
+                ds_regrid[data_var].lat.attrs["bounds"],
+                ds_regrid[data_var].lon.attrs["bounds"],
+            ]
+        )
         .bounds.add_bounds("Y")
         .bounds.add_bounds("X")
     )
