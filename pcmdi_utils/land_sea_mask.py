@@ -365,6 +365,13 @@ def _improve(
 
 
 def _map2four(mask, ds_regrid, data_var="sftlf", regridTool="regrid2", debug=False):
+    if debug:
+        print("mask.shape:", mask.shape)
+        print("ds_regrid[data_var].shape:", ds_regrid[data_var].shape)
+
+    ds_tmp = ds_regrid.copy()
+    ds_tmp[data_var] = mask
+
     start_time = time.time()
 
     lons = ds_regrid.lon.to_numpy()
@@ -374,42 +381,20 @@ def _map2four(mask, ds_regrid, data_var="sftlf", regridTool="regrid2", debug=Fal
     latso = lats[::2]
     latse = lats[1::2]
 
-    ds_tmp = ds_regrid.copy()
-    ds_tmp[data_var] = mask
-
-    start_time_c = time.time()
+    lat_delta = (lats[-1] - lats[0]) / len(lats) * 2
+    lon_delta = (lons[-1] - lons[0]) / len(lons) * 2
 
     oo = xc.create_uniform_grid(
-        latso[0],
-        latso[-1],
-        latso[1] - latso[0],
-        lonso[0],
-        lonso[-1],
-        lonso[1] - lonso[0],
+        latso[0], latso[-1], lat_delta, lonso[0], lonso[-1], lon_delta
     )
     oe = xc.create_uniform_grid(
-        latso[0],
-        latso[-1],
-        latso[1] - latso[0],
-        lonse[0],
-        lonse[-1],
-        lonse[1] - lonse[0],
+        latso[0], latso[-1], lat_delta, lonse[0], lonse[-1], lon_delta
     )
     eo = xc.create_uniform_grid(
-        latse[0],
-        latse[-1],
-        latse[1] - latse[0],
-        lonso[0],
-        lonso[-1],
-        lonso[1] - lonso[0],
+        latse[0], latse[-1], lat_delta, lonso[0], lonso[-1], lon_delta
     )
     ee = xc.create_uniform_grid(
-        latse[0],
-        latse[-1],
-        latse[1] - latse[0],
-        lonse[0],
-        lonse[-1],
-        lonse[1] - lonse[0],
+        latse[0], latse[-1], lat_delta, lonse[0], lonse[-1], lon_delta
     )
 
     end_time_c = time.time()
@@ -423,6 +408,13 @@ def _map2four(mask, ds_regrid, data_var="sftlf", regridTool="regrid2", debug=Fal
 
     out = np.zeros(mask.shape, dtype="f")
 
+    if debug:
+        print("out.shape:", out.shape)
+        print("doo.shape:", doo[data_var].to_numpy().shape)
+        print("doe.shape:", doe[data_var].to_numpy().shape)
+        print("deo.shape:", deo[data_var].to_numpy().shape)
+        print("dee.shape:", dee[data_var].to_numpy().shape)
+
     out[::2, ::2] = doo[data_var].to_numpy()
     out[::2, 1::2] = doe[data_var].to_numpy()
     out[1::2, ::2] = deo[data_var].to_numpy()
@@ -434,6 +426,7 @@ def _map2four(mask, ds_regrid, data_var="sftlf", regridTool="regrid2", debug=Fal
     end_time_o = time.time()
 
     end_time = time.time()
+
     if debug:
         elapsed_time = end_time - start_time
         print("Elapsed time (_map2four):", elapsed_time, "seconds")
