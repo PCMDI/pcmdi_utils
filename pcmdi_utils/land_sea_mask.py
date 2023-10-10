@@ -465,15 +465,15 @@ def generate_land_sea_mask__global_land_mask(ds, maskname="lsmask"):
     """
 
     for key in list(ds.coords.keys()):
-        if key in ["lat", "latitude"]:
+        if key in ["lat", "latitude"] or "lat" in key:
             lat_key = key
-        elif key in ["lon", "longitude"]:
+        elif key in ["lon", "longitude"] or "lon" in key:
             lon_key = key
         else:
-            if "axis" in list(ds["latitude"].attrs.keys()):
-                if ds["latitude"].attrs["axis"] == "Y":
+            if "axis" in list(ds[key].attrs.keys()):
+                if ds[key].attrs["axis"] == "Y":
                     lat_key = key
-                elif ds["latitude"].attrs["axis"] == "X":
+                elif ds[key].attrs["axis"] == "X":
                     lon_key = key
 
     lat = ds[lat_key].to_numpy()
