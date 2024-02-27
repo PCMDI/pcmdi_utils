@@ -89,7 +89,7 @@ def generate_land_sea_mask__pcmdi(
 
     References
     ----------
-    .. _PCMDI's report #58: http://www-pcmdi.llnl.gov/publications/pdf/58.pdf
+    .. _PCMDI's report #58: https://pcmdi.llnl.gov/report/ab58.html
     """
 
     if source is None:
